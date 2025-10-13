@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "FE.c"
 
-fila* cria_fila(){
+fila* cria(){
     fila* novo = (fila*)malloc(sizeof(fila));
     f->inicio = f->fim = 0;
 }
@@ -17,6 +17,6 @@ int pop(fila* f){
     return aux;
 }
 
-void libera_fila(fila* f){
+void libera(fila* f){
     free(f);s
 }

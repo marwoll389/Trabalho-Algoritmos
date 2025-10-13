@@ -12,9 +12,9 @@ typedef struct Fila{
     nodo* fim;
 }fila;
 
-fila* cria_fila();
+fila* cria();
 void push(fila* f, int x);
 int pop(fila* f);
-void libera_fila(fila* f);
+void libera(fila* f);
 
 #endif

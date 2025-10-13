@@ -2,7 +2,7 @@
 #include "FD.h"
 
 
-fila* cria_fila(){
+fila* cria(){
     fila* novo = (fila*)malloc(sizeof(fila));
     fila->inicio = NULL;
     fila->fim = NULL;
@@ -31,7 +31,7 @@ int pop(fila* f){
     return aux;
 }
 
-void libera_fila(fila* f){
+void libera(fila* f){
     if(f == NULL) return;
     fila* temp = f->inicio;
     f->inicio = f->inicio->prox;
