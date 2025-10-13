@@ -1,0 +1,29 @@
+void next(fila* download,fila* contador){
+    int x ;
+    char str[100];
+    
+    x = pop(cont);
+    
+    if(x == 0){ 
+        str = pop(download);
+        prinf("download %s concluido\n",s);
+        
+        str = pop(download);
+        if(download != NULL) {
+            x = pop(contador)    
+            printf(" iniciando download %s Termino em %d comandos",str,x);
+            push(contador,x);
+            push(download,str;
+        }
+        else{
+          return;  
+            
+        }
+    }//endif x == 0
+    
+    
+    else{
+        return;    
+        
+    }
+}
