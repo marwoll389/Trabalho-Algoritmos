@@ -3,7 +3,7 @@
 #define FILDA_DINAMICA
 
 typedef struct Nodo{
-    int info;
+    char info[100];
     struct Nodo* prox;
 }nodo;
 
@@ -13,8 +13,8 @@ typedef struct Fila{
 }fila;
 
 fila* cria();
-void push(fila* f, int x);
-int pop(fila* f);
+void push(fila* f, char x[]);
+char pop(fila* f);
 void libera(fila* f);
 
 #endif

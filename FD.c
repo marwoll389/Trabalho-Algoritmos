@@ -9,7 +9,7 @@ fila* cria(){
     return novo;
 }
 
-void push(fila* f, int x){
+void push(fila* f, char x[]){
     nodo* novo = (nodo*)malloc(sizeof(nodo));
     novo->info = x;
     novo->prox = NULL;
@@ -21,8 +21,8 @@ void push(fila* f, int x){
         }
 }
 
-int pop(fila* f){
-    int aux = f->inicio->info;
+char pop(fila* f){
+    char aux = f->inicio->info;
     nodo* temp = f->inicio;
     if( f->inicio == f->fim)
         f->fim == NULL;
