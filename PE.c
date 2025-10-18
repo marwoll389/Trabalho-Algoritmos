@@ -1,31 +1,56 @@
-#inclide <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "PE.h"
+#include "FE.h"
 
-//pilha estatica
-typedef struct pilha{
-    int pos;
-
-    char dado[100][100];
-}pilha;
+int tamanhop(pilha* pilhae){
+    return ((pilhae->pos)+1);
+}
 
 pilha* criapilha(){
     pilha* pilhae;
     pilhae = (pilha*)malloc(sizeof(pilha*));
-    pilhae->pos =0;
+    pilhae->pos = 0;
     return pilhae;
 }
 
-void push(pilha* pilhae,char str[100]){
-   pilhae->pos = ((pilhae->pos)+1)%100
-    pilhae->dado[pilhae->pos] = str;
-    return pilhae;
+void pushp(pilha* pilhae,char str[100]){
+   pilhae->pos = ((pilhae->pos)+1)%100;
+    strcpy(str,(pilhae->dado[pilhae->pos]));
+     
 }
 
-char* pop(pilha* pilhae){
+char* popp(pilha* pilhae){
     char x[100];
 
-    x = pilhae->dado[pilhae->pos];
+    strncpy(x, pilhae->dado[pilhae->pos], 100);
     pilhae->pos = ((pilhae->pos)-1)%100;
     return x;
+}
+
+int cheiap(pilha* pilhae){
+    if(pilhae->pos == 99) return 1;
+    else return 0;
+}
+
+pilha* tira1p(pilha* pilhae){
+    fila* aux = malloc(sizeof(fila));
+    while(pilhae->pos > 0){
+        pushf(aux, popp(pilhae));
+    }
+    popp(pilhae);
+    while(aux->inicio != aux->fim){
+        pushp(pilhae, popf(aux));
+    }
+    return pilhae;
+}
+
+int vaziap(pilha* pilhae){
+    if(pilhae->pos == 0) return 1;
+    else return 0;
+}
+
+void liberapilha(pilha* pilhae){
+    free(pilhae);
 }

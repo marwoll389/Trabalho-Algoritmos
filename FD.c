@@ -1,15 +1,16 @@
 #include <stdlib.h>
+#include <string.h>
 #include "FD.h"
 
 
-fila* cria(){
+fila* criafila(){
     fila* novo = (fila*)malloc(sizeof(fila));
     fila->inicio = NULL;
     fila->fim = NULL;
     return novo;
 }
 
-void push(fila* f, char x[]){
+void pushf(fila* f, char x[]){
     nodo* novo = (nodo*)malloc(sizeof(nodo));
     novo->info = x;
     novo->prox = NULL;
@@ -21,20 +22,32 @@ void push(fila* f, char x[]){
         }
 }
 
-char pop(fila* f){
-    char aux = f->inicio->info;
+char* popf(fila* f){
+    if(f->inicio == NULL) return "NULL";
+    
+    
+    strcpy(aux, f->inicio->info);
     nodo* temp = f->inicio;
-    if( f->inicio == f->fim)
+    if(f->inicio == f->fim)
         f->fim == NULL;
     f->inicio = f->inicio->prox;
     free(temp);
     return aux;
 }
 
-void libera(fila* f){
+void liberafila(fila* f){
     if(f == NULL) return;
     fila* temp = f->inicio;
     f->inicio = f->inicio->prox;
     free(temp);
-    libera_fila(f->inicio);
+    liberafila(f->inicio);
+}
+
+int tamanhof(fila* f){
+    int i = 0;
+    while(f->inicio != f->fim){
+        i++;
+        f->inicio = f->inicio->prox;
+    }
+    return i;
 }

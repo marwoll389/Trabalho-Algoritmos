@@ -1,6 +1,6 @@
-#ifndef
+#ifndef PE_H
 
-#define "PE.h"
+#define PE_H
 
 typedef struct pilha{
     int pos;
@@ -8,10 +8,20 @@ typedef struct pilha{
     char dado[100][100];
 }pilha;
 
-pilha* criapilha()
+pilha* criapilha();
 
-void push(pilha* pilhae,char str[100])
+void pushp(pilha* pilhae,char* str);
 
-char* pop(pilha* pilhae)
+char* popp(pilha* pilhae);
+
+int cheiap(pilha* pilhae);
+
+pilha* tira1p(pilha* pilhae);
+
+int vaziap(pilha* pilhae);
+
+int tamanhop(pilha* pilhae);
+
+void liberapilha(pilha* pilhae);
 
 #endif

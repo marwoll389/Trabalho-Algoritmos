@@ -1,6 +1,6 @@
-#ifndef
+#ifndef FD_H
 
-#define FILDA_DINAMICA
+#define FD_H
 
 typedef struct Nodo{
     char info[100];
@@ -12,9 +12,10 @@ typedef struct Fila{
     nodo* fim;
 }fila;
 
-fila* cria();
-void push(fila* f, char x[]);
-char pop(fila* f);
-void libera(fila* f);
+fila* criaf();
+void pushf(fila* f, char x[]);
+char popf(fila* f);
+void liberafila(fila* f);
+int tamanhof(fila* f);
 
 #endif

@@ -1,6 +1,6 @@
-#ifndef
+#ifndef PD_H
 
-#define "PD.h"
+#define PD_H
 
 typedef struct pilha{
     char dado[100];
@@ -10,8 +10,18 @@ typedef struct pilha{
 
 pilha* criapilha()
 
-void push(pilha* pilhae,char str[100])
+void pushp(pilha* pilhad,char str[100])
 
-char* pop(pilha* pilhae)
+char* popp(pilha* pilhad)
+
+int cheiap(pilha* pilhad)
+
+pilha* tirap(pilha* pilhad)
+
+int vaziap(pilha* pilhad);
+
+int tamanhop(pilha* pilhad);
+
+void liberap(pilha* pilhae);
 
 #endif
