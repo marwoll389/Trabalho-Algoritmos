@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "PE.h"
-#include "FE.h"
+#include "FD.h"
+
 
 int tamanhop(pilha* pilhae){
     return ((pilhae->pos)+1);
@@ -18,7 +19,7 @@ pilha* criapilha(){
 void pushp(pilha* pilhae,char str[100]){
    pilhae->pos = ((pilhae->pos)+1)%100;
     strcpy(str,(pilhae->dado[pilhae->pos]));
-     
+
 }
 
 char* popp(pilha* pilhae){

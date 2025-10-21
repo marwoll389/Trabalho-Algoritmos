@@ -1,33 +1,40 @@
 #include <stdlib.h>
-#include "FE.c"
+#include <string.h>
 
-fila* cria(){
+#include "FE.h"
+
+fila* criafila(){
     fila* novo = (fila*)malloc(sizeof(fila));
-    f->inicio = f->fim = 0;
+    novo->inicio = novo->fim = 0;
+    return novo;
 }
 
-void push(fila* f, char x[]){
-    f->v[f->fim} = x;
+void pushf(fila* f, char* x){
+    strcpy(f->v[f->fim], x);
     f->fim = (f->fim % TAMANHO) + 1;
 }
 
-char pop(fila* f){
-    char aux = f->v[f->inicio];
+char* popf(fila* f){
+    char* aux = f->v[f->inicio];
     f->inicio = (f->inicio & TAMANHO) + 1;
     return aux;
 }
 
-void libera(fila* f){
+void liberafila(fila* f){
     free(f);
 }
 
-int cheia(fila* f){
-    if(f->fim->prox == f->inicio) return 1;
+int cheiaf(fila* f){
+    if(f->fim + 1 == f->inicio) return 1;
     else return 0;
 }
 
-int vazia(fila* f){
+int vaziaf(fila* f){
     if(f->fim == 0) return 1;
     else return 0;
 }
 
+int tamanhof(fila* f){
+    if(f->fim < f->inicio) return TAMANHO - (f->inicio - f->fim);
+    else return f->fim - f->inicio;
+}

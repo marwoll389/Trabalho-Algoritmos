@@ -1,19 +1,19 @@
-#ifndef
+#ifndef FE_H
 
-#define FILHA_ESTATICA
+#define FE_H
 #define TAMANHO 10
 
 typedef struct Fila{
-    char v[100][TAMANHO];
+    char v[TAMANHO][100];
     int inicio, fim;
-}fila;
+} fila;
 
-fila* cria();
-void push(fila* f, char x[]);
-char pop(fila* f);
-void libera(fila* f);
-int cheia(fila* f);
-int vazia(fila* f);
-char voltar(fila* f);
+fila* criafila();
+void pushf(fila* f, char x[]);
+char* popf(fila* f);
+void liberafila(fila* f);
+int cheiaf(fila* f);
+int vaziaf(fila* f);
+int tamanhof(fila* f);
 
 #endif

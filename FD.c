@@ -5,14 +5,14 @@
 
 fila* criafila(){
     fila* novo = (fila*)malloc(sizeof(fila));
-    fila->inicio = NULL;
-    fila->fim = NULL;
+    novo->inicio = NULL;
+    novo->fim = NULL;
     return novo;
 }
 
-void pushf(fila* f, char x[]){
+void pushf(fila* f, char* x){
     nodo* novo = (nodo*)malloc(sizeof(nodo));
-    novo->info = x;
+    strcpy(novo->info, x);
     novo->prox = NULL;
     if(f->inicio == NULL)
         f->inicio = f->fim = novo;
@@ -23,9 +23,7 @@ void pushf(fila* f, char x[]){
 }
 
 char* popf(fila* f){
-    if(f->inicio == NULL) return "NULL";
-    
-    
+    char aux[20];
     strcpy(aux, f->inicio->info);
     nodo* temp = f->inicio;
     if(f->inicio == f->fim)
@@ -36,11 +34,27 @@ char* popf(fila* f){
 }
 
 void liberafila(fila* f){
-    if(f == NULL) return;
-    fila* temp = f->inicio;
-    f->inicio = f->inicio->prox;
-    free(temp);
-    liberafila(f->inicio);
+    while(f != NULL){
+        nodo* temp = f->inicio;
+        f->inicio = f->inicio->prox;
+        free(temp);
+    }
+    f->fim == NULL;
+}
+
+int cheiaf(fila* f){
+    int i = 0;
+    while(f->inicio != f->fim){
+        i++;
+        f->inicio = f->inicio->prox;
+    }
+    if(i == 10) return 1;
+    else return 0;
+}
+
+int vaziaf(fila* f){
+    if(f->inicio == NULL) return 1;
+    else return 0;
 }
 
 int tamanhof(fila* f){

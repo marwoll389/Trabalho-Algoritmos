@@ -1,12 +1,11 @@
 //pilha dinamica
 
-#inclide <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "PD.h"
-#include "FE.h"
-
-
+#include "FD.h"
 
 
 pilha* criapilha(){
@@ -15,10 +14,9 @@ pilha* criapilha(){
     return pilhad;
 }
 
-void pushp(pilha* pilhad,char str[100]){
+void pushp(pilha* pilhad,char* str){
     pilha* pilhanova = (pilha*)malloc(sizeof(pilha));
-
-    pilhanova->dado = str;
+    strcpy(pilhanova->dado, str);
     pilhanova->prox = pilhad;
     pilhad = pilhanova;
     return ;
@@ -28,8 +26,7 @@ void pushp(pilha* pilhad,char str[100]){
 char* popp(pilha* pilhad){
     char x[100];
     pilha* pilhaaux ;
-
-    x = pilhad->dado;
+    strcpy(x, pilhad->dado);
     pilhaaux = pilhad;
     pilhad = pilhad->prox ;
     free(pilhaaux);
@@ -38,24 +35,24 @@ char* popp(pilha* pilhad){
 
 int cheiap(pilha* pilhad){
     int tamanho = 0;
-    while(p != NULL){
+    while(pilhad != NULL){
         tamanho++;
         pilhad = pilhad->prox;
     }
-    if(tamanho == 10) return 1
+    if(tamanho == 10) return 1;
     else return 0;
 }
 
-pilha* tira1(pilha* pilhad){
+pilha* tira1p(pilha* pilhad){
     fila* aux = (fila*)malloc(sizeof(fila));
     while(pilhad->prox != NULL){
         pushf(aux, popp(pilhad));
     }
-    pop(p);
-    while(aux->inicio aux->fim){
+    popp(pilhad);
+    while(aux->inicio != NULL){
         pushp(pilhad, popf(aux));
     }
-    return p;
+    return pilhad;
 }
 
 int vaziap(pilha* pilhad){
@@ -67,19 +64,15 @@ int tamanhop(pilha* pilhad){
     int i = 0;
     while(pilhad != NULL){
         i++;
-        pilhad = pilhad->prox;    
+        pilhad = pilhad->prox;
     }
     return i;
 }
 
-void liberap(pilha* pilhae){
-    while(pilhad != NULL){
-        pilha* aux = pilhad;   
-        pilhad = pilhad->prox;
-        free(aux);
-        libera(pilhad);
-
-        return;
-    
+void liberapilha(pilha* pilhae){
+    while(pilhae != NULL){
+        pilha* temp = pilhae;
+        pilhae = pilhae->prox;
+        free(temp);
     }
 }

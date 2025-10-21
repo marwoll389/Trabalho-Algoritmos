@@ -8,20 +8,20 @@ typedef struct pilha{
 }pilha;
 
 
-pilha* criapilha()
+pilha* criapilha();
 
-void pushp(pilha* pilhad,char str[100])
+void pushp(pilha* pilhad,char* str);
 
-char* popp(pilha* pilhad)
+char* popp(pilha* pilhad);
 
-int cheiap(pilha* pilhad)
+int cheiap(pilha* pilhad);
 
-pilha* tirap(pilha* pilhad)
+pilha* tira1p(pilha* pilhad);
 
 int vaziap(pilha* pilhad);
 
 int tamanhop(pilha* pilhad);
 
-void liberap(pilha* pilhae);
+void liberapilha(pilha* pilhad);
 
 #endif

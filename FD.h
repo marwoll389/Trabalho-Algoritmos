@@ -10,12 +10,15 @@ typedef struct Nodo{
 typedef struct Fila{
     nodo* inicio;
     nodo* fim;
-}fila;
+} fila;
 
-fila* criaf();
-void pushf(fila* f, char x[]);
-char popf(fila* f);
+fila* criafila();
+void pushf(fila* f, char* x);
+char* popf(fila* f);
 void liberafila(fila* f);
+int cheiaf(fila* f);
+int vaziaf(fila* f);
 int tamanhof(fila* f);
+
 
 #endif
