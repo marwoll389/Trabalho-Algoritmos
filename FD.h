@@ -2,8 +2,13 @@
 
 #define FD_H
 
+typedef struct Arq{
+    char dado[100];
+    int tempo;
+}arq;
+
 typedef struct Nodo{
-    char info[100];
+    arq arquivo;
     struct Nodo* prox;
 }nodo;
 
@@ -13,8 +18,8 @@ typedef struct Fila{
 } fila;
 
 fila* criafila();
-void pushf(fila* f, char* x);
-char* popf(fila* f);
+void pushf(fila* f, arq x);
+arq popf(fila* f);
 void liberafila(fila* f);
 int cheiaf(fila* f);
 int vaziaf(fila* f);

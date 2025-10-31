@@ -1,78 +1,86 @@
-//pilha dinamica
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "PD.h"
-#include "FD.h"
 
 
-pilha* criapilha(){
-    pilha* pilhad = (pilha*)malloc(sizeof(pilha));
-    pilhad = NULL;
-    return pilhad;
+pilha *criapilha() {
+    pilha *pilhanova = (pilha *)malloc(sizeof(pilha));
+    pilhanova->topo = NULL;
+    return pilhanova;
 }
 
-void pushp(pilha* pilhad,char* str){
-    pilha* pilhanova = (pilha*)malloc(sizeof(pilha));
-    strcpy(pilhanova->dado, str);
-    pilhanova->prox = pilhad;
-    pilhad = pilhanova;
-    return ;
+int vaziap(pilha *pilhad) {
+    if(pilhad->topo == NULL) return 1;
+    else return 0;
+
 }
 
+void pushp(pilha *p, char* str) {
+    nodop *novo = (nodop*)malloc(sizeof(nodop));
+    strcpy(novo->dado, str);
+    novo->prox = p->topo;
+    p->topo = novo;
+}
 
-char* popp(pilha* pilhad){
-    char x[100];
-    pilha* pilhaaux ;
-    strcpy(x, pilhad->dado);
-    pilhaaux = pilhad;
-    pilhad = pilhad->prox ;
-    free(pilhaaux);
+char* popp(pilha *p) {
+    if(vaziap(p)) return NULL;
+    char* x = (char*)malloc(sizeof(p->topo->dado));
+    strcpy(x, p->topo->dado);
+    nodop *aux = p->topo->prox;
+    free(p->topo);
+    p->topo = aux;
     return x;
 }
 
-int cheiap(pilha* pilhad){
+
+int cheiap(pilha* p){
     int tamanho = 0;
-    while(pilhad != NULL){
+    nodop* aux = p->topo;
+
+    while(aux != NULL){
         tamanho++;
-        pilhad = pilhad->prox;
+        aux = aux->prox;
     }
-    if(tamanho == 10) return 1;
-    else return 0;
+
+    return tamanho == 10;// tamanho máximo da pilha do histórico = 10
 }
 
 pilha* tira1p(pilha* pilhad){
-    fila* aux = (fila*)malloc(sizeof(fila));
-    while(pilhad->prox != NULL){
-        pushf(aux, popp(pilhad));
+    pilha* aux = criapilha();
+    //inverte a ordem dos elementos da pilha com uma pilha auxiliar
+    while(pilhad->topo != NULL){
+        pushp(aux, popp(pilhad));
     }
-    popp(pilhad);
-    while(aux->inicio != NULL){
-        pushp(pilhad, popf(aux));
+    //libera o primeiro elemento da pilha invertida, correspondne a remover o último elemento da pilha original
+    popp(aux);
+    //inverte a pilha novamente para restaurar a ordem original
+    while(aux->topo != NULL){
+        pushp(pilhad, popp(aux));
     }
+    liberapilha(aux);
     return pilhad;
 }
 
-int vaziap(pilha* pilhad){
-    if(pilhad == NULL) return 1;
-    else return 0;
-}
+
 
 int tamanhop(pilha* pilhad){
     int i = 0;
-    while(pilhad != NULL){
+    nodop* aux = pilhad->topo;
+    while(aux != NULL){
         i++;
-        pilhad = pilhad->prox;
+        aux = aux->prox;
     }
     return i;
 }
 
 void liberapilha(pilha* pilhae){
-    while(pilhae != NULL){
-        pilha* temp = pilhae;
-        pilhae = pilhae->prox;
+    nodop* aux = pilhae->topo;
+    while(aux != NULL){
+        nodop* temp = aux;
+        aux = aux->prox;
         free(temp);
     }
+    free(pilhae);
 }

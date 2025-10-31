@@ -2,48 +2,52 @@
 #include <stdlib.h>
 #include <string.h>
 #include "PE.h"
-#include "FD.h"
 
 
 int tamanhop(pilha* pilhae){
-    return ((pilhae->pos)+1);
+    return (pilhae->pos);
 }
 
 pilha* criapilha(){
     pilha* pilhae;
-    pilhae = (pilha*)malloc(sizeof(pilha*));
+    pilhae = (pilha*)malloc(sizeof(pilha));
     pilhae->pos = 0;
     return pilhae;
 }
 
 void pushp(pilha* pilhae,char str[100]){
-   pilhae->pos = ((pilhae->pos)+1)%100;
-    strcpy(str,(pilhae->dado[pilhae->pos]));
+   pilhae->pos = (pilhae->pos)+1;
+    strcpy((pilhae->dado[pilhae->pos]), str);
 
 }
 
 char* popp(pilha* pilhae){
-    char x[100];
+    char* x = (char*)malloc(sizeof(pilhae->dado));
 
-    strncpy(x, pilhae->dado[pilhae->pos], 100);
-    pilhae->pos = ((pilhae->pos)-1)%100;
+    strcpy(x, pilhae->dado[pilhae->pos]);
+
+    pilhae->pos = (pilhae->pos)-1;
     return x;
 }
 
 int cheiap(pilha* pilhae){
-    if(pilhae->pos == 99) return 1;
+    if(pilhae->pos == 10) return 1; //tamanho máximo = 10
     else return 0;
 }
 
 pilha* tira1p(pilha* pilhae){
-    fila* aux = malloc(sizeof(fila));
-    while(pilhae->pos > 0){
-        pushf(aux, popp(pilhae));
+    pilha* aux = criapilha();
+    //inverte a ordem dos elementos da pilha com uma pilha auxiliar
+    while(pilhae->pos != 0){
+        pushp(aux, popp(pilhae));
     }
-    popp(pilhae);
-    while(aux->inicio != aux->fim){
-        pushp(pilhae, popf(aux));
+    //libera o primeiro elemento da pilha invertida, correspondne a remover o último elemento da pilha original
+    popp(aux);
+    //inverte a pilha novamente para restaurar a ordem original
+    while(aux->pos != 0){
+        pushp(pilhae, popp(aux));
     }
+    liberapilha(aux);
     return pilhae;
 }
 
