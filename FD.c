@@ -33,7 +33,7 @@ arq popf(fila* f){
     f->inicio = f->inicio->prox;
     return aux;
 }
-
+//libera a fila de nodo em nodo
 void liberafila(fila* f){
     while(f->inicio != NULL){
         nodo* temp = f->inicio;
@@ -43,17 +43,17 @@ void liberafila(fila* f){
     f->fim = NULL;
     free(f);
 }
-
+// checa se a fila atingiu a capacidade máxima, 10
 int cheiaf(fila* f){
     if(tamanhof(f) == 10) return 1;
     else return 0;
 }
-
+// checa se a fila está vazia
 int vaziaf(fila* f){
     if(f->inicio == NULL) return 1;
     else return 0;
 }
-
+// retorna o tamanho da fila
 int tamanhof(fila* f) {
     int i = 0;
     nodo* aux = f->inicio;
