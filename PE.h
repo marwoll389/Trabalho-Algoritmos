@@ -15,9 +15,9 @@ void pushp(pilha* pilhae,char* str);
 
 char* popp(pilha* pilhae);
 
-int cheiap(pilha* pilhae); //verifica se a pilha esta cheia, verificaÁ„o necessaria para "tira1"
+int cheiap(pilha* pilhae); //verifica se a pilha esta cheia, verifica√ß√£o necessaria para "tira1"
 
-pilha* tira1p(pilha* pilhae); //funÁ„o para tirar o primeiro elemento da pilha quando chegar no tamanho m·ximo (10)
+pilha* tira1p(pilha* pilhae); //fun√ß√£o para tirar o primeiro elemento da pilha quando chegar no tamanho m√°ximo (10)
 
 int vaziap(pilha* pilhae); //verifica se a pilha esta vazia, usado em "voltar"
 

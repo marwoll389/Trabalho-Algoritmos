@@ -31,7 +31,7 @@ char* popp(pilha* pilhae){
 }
 
 int cheiap(pilha* pilhae){
-    if(pilhae->pos == 10) return 1; //tamanho máximo = 10
+    if(pilhae->pos == 10) return 1; //tamanho mÃ¡ximo = 10
     else return 0;
 }
 
@@ -41,7 +41,7 @@ pilha* tira1p(pilha* pilhae){
     while(pilhae->pos != 0){
         pushp(aux, popp(pilhae));
     }
-    //libera o primeiro elemento da pilha invertida, correspondne a remover o último elemento da pilha original
+    //libera o primeiro elemento da pilha invertida, correspondne a remover o Ãºltimo elemento da pilha original
     popp(aux);
     //inverte a pilha novamente para restaurar a ordem original
     while(aux->pos != 0){

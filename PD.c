@@ -44,7 +44,7 @@ int cheiap(pilha* p){
         aux = aux->prox;
     }
 
-    return tamanho == 10;// tamanho máximo da pilha do histórico = 10
+    return tamanho == 10;// tamanho mÃ¡ximo da pilha do histÃ³rico = 10
 }
 
 pilha* tira1p(pilha* pilhad){
@@ -53,7 +53,7 @@ pilha* tira1p(pilha* pilhad){
     while(pilhad->topo != NULL){
         pushp(aux, popp(pilhad));
     }
-    //libera o primeiro elemento da pilha invertida, correspondne a remover o último elemento da pilha original
+    //libera o primeiro elemento da pilha invertida, correspondne a remover o Ãºltimo elemento da pilha original
     popp(aux);
     //inverte a pilha novamente para restaurar a ordem original
     while(aux->topo != NULL){

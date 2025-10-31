@@ -9,8 +9,8 @@
 
 
 int verifstring(char* x){
-    //funÁ„o necess·ria para possibilitar o uso indireto de strings para o switch case do laÁo principal
-    // cada if verifica a entrada da opÁ„o e converte para um n˙mero correspondente
+    //fun√ß√£o necess√°ria para possibilitar o uso indireto de strings para o switch case do la√ßo principal
+    // cada if verifica a entrada da op√ß√£o e converte para um n√∫mero correspondente
     if(strcmp(x, "visitar") == 0)
         return 1;
     else if(strcmp(x, "voltar") == 0)
@@ -23,29 +23,33 @@ int verifstring(char* x){
 }
 
 void next(fila* download){
+    //cria√ß√£o de variaveis auxiliares para a fun√ß√£o
     fila* aux = criafila();
     arq arqaux ;
 
-    if(vaziaf(download) == 1){
+    if(vaziaf(download) == 1){//checa caso n√£o haja nenhum download na fila
         return;
     }
 
-    arqaux = popf(download);
+    arqaux = popf(download);//recebe a struct do download da fila
 
-    //printf("%d\n",arqaux.tempo);
+    
 
     if(arqaux.tempo == 0){
-        printf("download %s concluido\n\n", arqaux.dado);
+        //caso o tempo do download seja 0, o download √© concluido e a fun√ß√£o retorna
+        printf("download %s concluido\n", arqaux.dado);
 
-        if(vaziaf(download) == 1){
-            //printf("nao ha mais downloads");
+        if(vaziaf(download) == 1){//caso n√£o haja mais nenhum download na fila, a fun√ß√£o retorna
+            
             return;}
+        //caso haja mais downloads na fila, o pr√≥ximo download √© iniciado
         arqaux = popf(download);
 
-        printf("iniciando download %s Termino em %d comandos\n\n",arqaux.dado,arqaux.tempo);
-
+        printf("iniciando download %s Termino em %d comandos\n",arqaux.dado,arqaux.tempo);
+        //reduz o tempo do pr√≥ximo download em 1
          arqaux.tempo = (arqaux.tempo) - 1;
 
+        //coloca o download com o tempo reduzido de volta na fila, para que ele volte a primeira posi√ß√£o a fila √© movida, o download inserido e depois a fila √© retornada
         while(vaziaf(download)==0){
             pushf(aux, popf(download));
         }
@@ -57,6 +61,7 @@ void next(fila* download){
         }
     }
     else{
+        //caso o tempo do download n√£o seja 0, o tempo √© reduzido em 1 e o download √© colocado de volta na fila
         arqaux.tempo = arqaux.tempo - 1;
         while(vaziaf(download)==0){
             pushf(aux, popf(download));
@@ -69,30 +74,31 @@ void next(fila* download){
         }
     }
 
-    liberafila(aux);
+    liberafila(aux);//libera a fila auxiliar
     return;
 }
 
 int main()
 {
-    int loop = 1; //vari·vel controladora do laÁo principal
-    pilha* obj = criapilha(); //pilha do histÛrico
+    int loop = 1; //vari√°vel controladora do la√ßo principal
+    pilha* obj = criapilha(); //pilha do hist√≥rico
     fila* download = criafila(); //fila dos downloads
-    arq urld ;
-    char opcao[20]; //string da opÁ„o que vai ser convertida
-    int opcaof;// int auxiliar para converter a string opÁ„o em um n˙mero para o switch case
+    arq urld ;// struct do arquivo de download
+    char opcao[20]; //string da op√ß√£o que vai ser convertida
+    int opcaof;// int auxiliar para converter a string op√ß√£o em um n√∫mero para o switch case
     char url[100];// string da entrada do url
-    char aux[20];// string auxiliar em "voltar" que È  utiizada para colocar na pilha o valor rec-em retirado
-
+    char aux[20];// string auxiliar em "voltar" que √©  utiizada para colocar na pilha o valor rec-em retirado
+    int p = 0; //variavel para imprimir as informa√ß√µes do primeiro download da fila
+    
     do{
-        //recebe a entrada de opÁ„o do usu·rio e converte para um n˙mero
+        //recebe a entrada de op√ß√£o do usu√°rio e converte para um n√∫mero
         scanf("%s", opcao);
         opcaof = verifstring(opcao);
 
         switch(opcaof){
             case 1: //caso "visitar"
                 scanf("%s", url);
-                printf("visualizando %s\n\n", url);
+                printf("visualizando %s\n", url);
                 //se a pilha estiver cheia, tamanho = 10, tira o primeiro elemento antes de colocar o novo
                 if(cheiap(obj) == 1)
                     obj = tira1p(obj);
@@ -100,20 +106,20 @@ int main()
                 break;
 
             case 2:
-                //mensagem de retorno caso n„o haja urls no hisstÛrico
+                //mensagem de retorno caso n√£o haja urls no hist√≥rico
                 if(vaziap(obj) == 1){
                     printf("visualizando pagina em branco.\n");
                     break;
                 }
                 popp(obj);
-                //segunda verificaÁ„o do histÛrico, "voltar" precisa de uma pilha de tamanho >= 2
+                //segunda verifica√ß√£o do hist√≥rico, "voltar" precisa de uma pilha de tamanho >= 2
                 if(vaziap(obj) == 1){
-                    printf("visualizando pagina em branco.\n\n");
+                    printf("visualizando pagina em branco.\n");
                     break;
                 }
                 //uso da string aux para tirar e colocar de volta o url da pilha
                 strcpy(aux, popp(obj));
-                printf("visitando %s\n\n", aux);
+                printf("visitando %s\n", aux);
                 pushp(obj, aux);
 
                 break;
@@ -128,22 +134,31 @@ int main()
                     break;
                 }
                 printf("inserido %s na fila\n", urld.dado);
+                if(p == 0){// printa as informa√ß√µes do primeiro download da fila, depois isso √© gerido pela next()
+                    printf("iniciando download %s Termino em %d comandos\n", urld.dado, urld.tempo);
+                    p = 1;
+                    
+                }
                 pushf(download, urld);
 
                 break;
 
             case 4:
-                //retorna o tamanho atual da pilha do histÛrico e da fila de download
-                printf("arquivos na fila de download: %d\n\n", tamanhof(download));
+                //retorna o tamanho atual da pilha do hist√≥rico e da fila de download
+                printf("arquivos na fila de download: %d\n", tamanhof(download));
                 printf("paginas no historico: %d", tamanhop(obj));
-                //vari·vel controladora do loop principal tem o valor alterado, fim do loop
+                liberapilha(obj);
+                liberafila(download);
+                //libera as pilhas e filas e encerra o programa
+                //vari√°vel controladora do loop principal tem o valor alterado, fim do loop
                 loop = 0;
                 break;
 
             default:
-                break;//caso em que o udu·rio insere algum comando inv·lido, apenas continua o loop
+                break;//caso em que o udu√°rio insere algum comando inv√°lido, apenas continua o loop
         }
-        //invoca a funÁ„o que controla a fila de download
+        //invoca a fun√ß√£o que controla a fila de download
         next(download);
+        printf("\n");
     }while(loop == 1);
 }
